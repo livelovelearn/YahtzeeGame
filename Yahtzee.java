@@ -45,8 +45,9 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 		
 		display.waitForPlayerToSelectDice();
 		for(int i=0;i<5;i++){
-			display.isDieSelected(i);
-			dice[i]=rgen.nextInt(1,6);			
+			if(display.isDieSelected(i)){
+			dice[i]=rgen.nextInt(1,6);		
+			}
 		}
 		
 		display.displayDice(dice);
@@ -54,8 +55,9 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 			
 		display.waitForPlayerToSelectDice();
 		for(int i=0;i<5;i++){
-			display.isDieSelected(i);
-			dice[i]=rgen.nextInt(1,6);			
+			if(display.isDieSelected(i)){
+			dice[i]=rgen.nextInt(1,6);		
+			}
 		}
 		
 		display.displayDice(dice);

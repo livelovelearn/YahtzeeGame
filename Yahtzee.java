@@ -41,6 +41,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 			dice[i]=rgen.nextInt(1,6);
 		}
 		display.displayDice(dice);
+		display.printMessage("1st time");
 		
 		display.waitForPlayerToSelectDice();
 		for(int i=0;i<5;i++){
@@ -49,6 +50,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 		}
 		
 		display.displayDice(dice);
+		display.printMessage("2nd time");
 			
 		display.waitForPlayerToSelectDice();
 		for(int i=0;i<5;i++){
@@ -57,6 +59,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 		}
 		
 		display.displayDice(dice);
+		display.printMessage("3rd time. please select category");
 		return dice;
 		
 	}

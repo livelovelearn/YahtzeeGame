@@ -29,9 +29,9 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 	}
 
 	private void playGame() {
-
+		int[] totalScore = new int[nPlayers+1];
 		for (int j = 0; j < N_SCORING_CATEGORIES; j++) {
-			int[] totalScore = new int[nPlayers+1];
+			
 			for (int i = 1; i <= nPlayers; i++) {
 				int player = i;
 				int[] dice = rollDice();

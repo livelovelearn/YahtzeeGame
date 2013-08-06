@@ -35,11 +35,11 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 		
 	private int[] rollDice(){
 		display.waitForPlayerToClickRoll(1);
-		int d1 = rgen.nextInt();
-		int d2 = rgen.nextInt();
-		int d3 = rgen.nextInt();
-		int d4 = rgen.nextInt();
-		int d5 = rgen.nextInt();
+		int d1 = rgen.nextInt(1,6);
+		int d2 = rgen.nextInt(1,6);
+		int d3 = rgen.nextInt(1,6);
+		int d4 = rgen.nextInt(1,6);
+		int d5 = rgen.nextInt(1,6);
 		int[] dice = {d1,d2,d3,d4,d5};
 		//dice = {2,3,4,5,6};
 		display.displayDice(dice);

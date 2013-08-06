@@ -23,7 +23,7 @@ public interface YahtzeeConstants {
 	public static final int N_CATEGORIES = 17;
 
 /** The number of categories in which the player can score */
-	public static final int N_SCORING_CATEGORIES = 13;
+	public static final int N_SCORING_CATEGORIES = 1;
 
 /** The constants that specify categories on the scoresheet */
 	public static final int ONES = 1;

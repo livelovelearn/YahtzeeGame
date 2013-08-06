@@ -61,7 +61,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 		if (!match)
 			return 0;
 		int score = 0;
-		int[] drawer = new int[6];
+		int[] drawer = new int[7];
 		switch (category) {
 		case ONES:
 			for (int i = 0; i < N_DICE; i++)

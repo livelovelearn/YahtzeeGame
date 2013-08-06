@@ -56,10 +56,10 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 		}
 	}
 
-	private int getScore(boolean match, int category) {
+	/*private int getScore(boolean match, int category) {
 		if (!match) return 0;
 		switch(category){
-		ONES 
+		/*ONES 
 		public static final int TWOS = 2;
 		public static final int THREES = 3;
 		public static final int FOURS = 4;
@@ -76,8 +76,8 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 		public static final int CHANCE = 15;
 		public static final int LOWER_SCORE = 16;
 		public static final int TOTAL = 17;
-		}
-	}
+		}*/
+	
 
 	private int[] rollDice() {
 		display.waitForPlayerToClickRoll(1);

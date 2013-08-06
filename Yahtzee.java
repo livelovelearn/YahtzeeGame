@@ -133,14 +133,14 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 			for (int i = 0; i < N_DICE; i++) {
 				drawer[dice[i]]++;
 			}
-			if( linked4(1, drawer)||linked4(2, drawer)||linked4(1, drawer))
+			if (linked4(1, drawer) || linked4(2, drawer) || linked4(1, drawer))
 				return 30;
 			return 0;
 		case LARGE_STRAIGHT:
 			for (int i = 0; i < N_DICE; i++) {
 				drawer[dice[i]]++;
 			}
-			if( linked5(1, drawer)||linked5(2, drawer))
+			if (linked5(1, drawer) || linked5(2, drawer))
 				return 30;
 			return 0;
 		case YAHTZEE:
@@ -153,15 +153,21 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 			for (int i = 0; i < N_DICE; i++)
 				score += dice[i];
 			return score;
+		default:
+			return 0;
 
 		}
 	}
-	
-	private boolean linked4 (int start, int[] drawer){
-		return drawer[start++]==0||drawer[start++]==0||drawer[start++]==0||drawer[start++]==0;
+
+	private boolean linked4(int start, int[] drawer) {
+		return drawer[start++] == 0 || drawer[start++] == 0
+				|| drawer[start++] == 0 || drawer[start++] == 0;
 	}
-	private boolean linked5 (int start, int[] drawer){
-		return drawer[start++]==0||drawer[start++]==0||drawer[start++]==0||drawer[start++]==0||drawer[start++]==0;
+
+	private boolean linked5(int start, int[] drawer) {
+		return drawer[start++] == 0 || drawer[start++] == 0
+				|| drawer[start++] == 0 || drawer[start++] == 0
+				|| drawer[start++] == 0;
 	}
 
 	private int[] rollDice() {

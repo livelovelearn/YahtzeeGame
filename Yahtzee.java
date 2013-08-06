@@ -31,6 +31,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 	private void playGame() {
 
 		for (int j = 0; j < N_SCORING_CATEGORIES; j++) {
+			int[] totalScore = new int[nPlayers];
 			for (int i = 1; i <= nPlayers; i++) {
 				int player = i;
 				int[] dice = rollDice();
@@ -38,7 +39,9 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 				int category = display.waitForPlayerToSelectCategory();
 				boolean p = YahtzeeMagicStub.checkCategory(dice, category);
 				int score = getScore(p, category);
+				totalScore[i]+=score;
 				display.updateScorecard(category, player, score);
+				display.updateScorecard(TOTAL, player, score);
 			}
 		}
 	}

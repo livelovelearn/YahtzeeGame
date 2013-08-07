@@ -17,13 +17,13 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 	public void run() {
 		IODialog dialog = getDialog();
 		nPlayers = 2;// dialog.readInt("Enter number of players");
-		playerNames = new String[nPlayers];
+		/*playerNames = new String[nPlayers];
 		playerNames[0] = "ann";
 		playerNames[1] = "zoe";
-		/*
-		 * for (int i = 1; i <= nPlayers; i++) { playerNames[i - 1] =
-		 * dialog.readLine("Enter name for player " + i); }
-		 */
+		*/
+		 for (int i = 1; i <= nPlayers; i++) { playerNames[i - 1] =
+		 dialog.readLine("Enter name for player " + i); }
+		 
 		display = new YahtzeeDisplay(getGCanvas(), playerNames);
 		playGame();
 	}
@@ -31,6 +31,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 	private void playGame() {
 		int[] totalScore = new int[nPlayers + 1];
 		int[] upperScore = new int[nPlayers + 1];
+		boolean[][] seletedCategory = new boolean[nPlayers + 1][N_CATEGORIES+1];
 
 		for (int j = 0; j < N_SCORING_CATEGORIES; j++) {
 			for (int i = 1; i <= nPlayers; i++) {
@@ -38,6 +39,9 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 				int[] dice = rollDice();
 
 				int category = display.waitForPlayerToSelectCategory();
+				while(seletedCategory[i][category]){
+					category = display.waitForPlayerToSelectCategory();}
+				seletedCategory[i][category]= true;
 				//boolean p = YahtzeeMagicStub.checkCategory(dice, category);
 				int score = getScore(category, dice);
 				totalScore[i] += score;

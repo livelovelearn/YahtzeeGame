@@ -38,8 +38,8 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 				int[] dice = rollDice();
 
 				int category = display.waitForPlayerToSelectCategory();
-				boolean p = YahtzeeMagicStub.checkCategory(dice, category);
-				int score = getScore(p, category, dice);
+				//boolean p = YahtzeeMagicStub.checkCategory(dice, category);
+				int score = getScore(category, dice);
 				totalScore[i] += score;
 				display.updateScorecard(category, player, score);
 				display.updateScorecard(TOTAL, player, totalScore[i]);

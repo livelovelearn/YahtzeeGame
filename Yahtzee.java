@@ -31,7 +31,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 	private void playGame() {
 		int[] totalScore = new int[nPlayers + 1];
 		int[] upperScore = new int[nPlayers + 1];
-		
+
 		for (int j = 0; j < N_SCORING_CATEGORIES; j++) {
 			for (int i = 1; i <= nPlayers; i++) {
 				int player = i;
@@ -57,9 +57,40 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 		}
 	}
 
-	private int getScore(boolean match, int category, int[] dice) {
-		if (!match)
-			return 0;
+	private int[] rollDice() {
+
+		display.waitForPlayerToClickRoll(1);
+		int[] dice = new int[5];
+		for (int i = 0; i < 5; i++) {
+			dice[i] = rgen.nextInt(1, 6);
+		}
+		display.displayDice(dice);
+		display.printMessage("1st time");
+
+		display.waitForPlayerToSelectDice();
+		for (int i = 0; i < 5; i++) {
+			if (display.isDieSelected(i)) {
+				dice[i] = rgen.nextInt(1, 6);
+			}
+		}
+
+		display.displayDice(dice);
+		display.printMessage("2nd time");
+
+		display.waitForPlayerToSelectDice();
+		for (int i = 0; i < 5; i++) {
+			if (display.isDieSelected(i)) {
+				dice[i] = rgen.nextInt(1, 6);
+			}
+		}
+
+		display.displayDice(dice);
+		display.printMessage("3rd time. please select category");
+		return dice;
+
+	}
+
+	private int getScore(int category, int[] dice) {
 		int score = 0;
 		int[] drawer = new int[7];
 		switch (category) {
@@ -98,7 +129,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 				drawer[dice[i]]++;
 				score += dice[i];
 			}
-			for (int i = 1; i <= 5; i++) {
+			for (int i = 1; i <= 6; i++) {
 				if (drawer[i] >= 3)
 					return score;
 			}
@@ -108,7 +139,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 				drawer[dice[i]]++;
 				score += dice[i];
 			}
-			for (int i = 1; i <= 5; i++) {
+			for (int i = 1; i <= 6; i++) {
 				if (drawer[i] >= 4)
 					return score;
 			}
@@ -119,89 +150,55 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 				score += dice[i];
 			}
 			int emptyDrawer = 0;
-			for (int i = 1; i <= 5; i++) {
+			for (int i = 1; i <= 6; i++) {
 				if (drawer[i] == 0)
 					emptyDrawer++;
 			}
-			for (int i = 1; i <= 5; i++) {
+			for (int i = 1; i <= 6; i++) {
 				if (drawer[i] == 4)
 					emptyDrawer = -1;
 			}
-			if (emptyDrawer == 3)
+			if (emptyDrawer >= 4)
 				return 25;
 			return 0;
 		case SMALL_STRAIGHT:
 			for (int i = 0; i < N_DICE; i++) {
 				drawer[dice[i]]++;
 			}
-			if (linked4(1, drawer) || linked4(2, drawer) || linked4(1, drawer))
+			if (!unlinked4(1, drawer) || !unlinked4(2, drawer)
+					|| !unlinked4(3, drawer))
 				return 30;
 			return 0;
 		case LARGE_STRAIGHT:
 			for (int i = 0; i < N_DICE; i++) {
 				drawer[dice[i]]++;
 			}
-			if (linked5(1, drawer) || linked5(2, drawer))
-				return 30;
+			if (!unlinked5(1, drawer) || !unlinked5(2, drawer))
+				return 40;
 			return 0;
 		case YAHTZEE:
 			for (int i = 1; i < N_DICE; i++)
 				if (dice[0] != dice[i])
 					return 0;
 			return 50;
-
 		case CHANCE:
 			for (int i = 0; i < N_DICE; i++)
 				score += dice[i];
 			return score;
 		default:
 			return 0;
-
 		}
 	}
 
-	private boolean linked4(int start, int[] drawer) {
+	private boolean unlinked4(int start, int[] drawer) {
 		return drawer[start++] == 0 || drawer[start++] == 0
 				|| drawer[start++] == 0 || drawer[start++] == 0;
 	}
 
-	private boolean linked5(int start, int[] drawer) {
+	private boolean unlinked5(int start, int[] drawer) {
 		return drawer[start++] == 0 || drawer[start++] == 0
 				|| drawer[start++] == 0 || drawer[start++] == 0
 				|| drawer[start++] == 0;
-	}
-
-	private int[] rollDice() {
-		
-		display.waitForPlayerToClickRoll(1);
-		int[] dice = new int[5];
-		for (int i = 0; i < 5; i++) {
-			dice[i] = rgen.nextInt(1, 6);
-		}
-		display.displayDice(dice);
-		display.printMessage("1st time");
-
-		display.waitForPlayerToSelectDice();
-		for (int i = 0; i < 5; i++) {
-			if (display.isDieSelected(i)) {
-				dice[i] = rgen.nextInt(1, 6);
-			}
-		}
-
-		display.displayDice(dice);
-		display.printMessage("2nd time");
-
-		display.waitForPlayerToSelectDice();
-		for (int i = 0; i < 5; i++) {
-			if (display.isDieSelected(i)) {
-				dice[i] = rgen.nextInt(1, 6);
-			}
-		}
-
-		display.displayDice(dice);
-		display.printMessage("3rd time. please select category");
-		return dice;
-
 	}
 
 	/* Private instance variables */

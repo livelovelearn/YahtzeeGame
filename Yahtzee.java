@@ -28,9 +28,9 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 	private void playGame() {
 		int[] totalScore = new int[nPlayers + 1];
 		int[] upperScore = new int[nPlayers + 1];
-		boolean[][] seletedCategory = new boolean[nPlayers + 1][N_CATEGORIES + 1]; 
+		boolean[][] seletedCategory = new boolean[nPlayers + 1][N_CATEGORIES + 1];
 		// famehall[] fh = new famehall[10]; need to define outside this method
-		int rank=0;
+		int rank = 0;
 
 		for (int j = 0; j < N_SCORING_CATEGORIES; j++) {
 			for (int i = 1; i <= nPlayers; i++) {
@@ -38,12 +38,15 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 				int[] dice = rollDice(player);
 
 				int category = display.waitForPlayerToSelectCategory();
-				while (seletedCategory[i][category]) {					//cannot select a selected category
+				while (seletedCategory[i][category]) { // cannot select a
+														// selected category
 					category = display.waitForPlayerToSelectCategory();
 				}
-				seletedCategory[i][category] = true;//set to selected
+				seletedCategory[i][category] = true;// set to selected
 				// boolean p = YahtzeeMagicStub.checkCategory(dice, category);
-				int score = getScore(category, dice);//calculate score of dice according to selected category
+				int score = getScore(category, dice);// calculate score of dice
+														// according to selected
+														// category
 				totalScore[i] += score;
 				display.updateScorecard(category, player, score);
 				display.updateScorecard(TOTAL, player, totalScore[i]);
@@ -59,14 +62,11 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 				}
 			}
 		}
-		/*for (int i = 1; i <= nPlayers; i++) {
-			for(int j=9;j>=0;j--){
-				if (fh[j].score<totalScore[i]){
-					fh[j].score=totalScore[i];
-					rank=j+1;}
-				}
-			         display.printMessage("congraduations, "+" you are No."+ rank);
-		}*/
+		/*
+		 * for (int i = 1; i <= nPlayers; i++) { for(int j=9;j>=0;j--){ if
+		 * (fh[j].score<totalScore[i]){ fh[j].score=totalScore[i]; rank=j+1;} }
+		 * display.printMessage("congraduations, "+" you are No."+ rank); }
+		 */
 	}
 
 	private int[] rollDice(int player) {
@@ -218,6 +218,5 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 	private String[] playerNames;
 	private YahtzeeDisplay display;
 	private RandomGenerator rgen = new RandomGenerator();
-	
 
 }

@@ -35,7 +35,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 		for (int j = 0; j < N_SCORING_CATEGORIES; j++) {
 			for (int i = 1; i <= nPlayers; i++) {
 				int player = i;
-				int[] dice = rollDice();
+				int[] dice = rollDice(player);
 
 				int category = display.waitForPlayerToSelectCategory();
 				while (seletedCategory[i][category]) {					//cannot select a selected category
@@ -69,9 +69,9 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 		}*/
 	}
 
-	private int[] rollDice() {
+	private int[] rollDice(int player) {
 
-		display.waitForPlayerToClickRoll(1);
+		display.waitForPlayerToClickRoll(player);
 		int[] dice = new int[5];
 		for (int i = 0; i < 5; i++) {
 			dice[i] = rgen.nextInt(1, 6);

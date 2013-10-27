@@ -1,8 +1,7 @@
 /*
  * File: YahtzeeConstants.java
  * ---------------------------
- * This file declares several constants that are shared by the
- * different modules in the Yahtzee game.
+ * This file declares several constants that are shared by the different modules in the Yahtzee game.
  */
 
 public interface YahtzeeConstants {
